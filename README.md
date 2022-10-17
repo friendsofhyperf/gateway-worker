@@ -1,4 +1,4 @@
-# Gateway Worker For Laravel/Lumen
+# Gateway Worker For Hyperf
 
 [![Latest Test](https://github.com/friendsofhyperf/gateway-worker/workflows/tests/badge.svg)](https://github.com/friendsofhyperf/gateway-worker/actions)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/friendsofhyperf/gateway-worker.svg?style=flat-square)](https://packagist.org/packages/friendsofhyperf/gateway-worker)
