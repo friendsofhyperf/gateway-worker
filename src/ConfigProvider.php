@@ -20,6 +20,9 @@ class ConfigProvider
             'commands' => [
                 Command\ServeCommand::class,
             ],
+            'listeners' => [
+                Listener\BindRegistryAddressListener::class,
+            ],
             'publish' => [
                 [
                     'id' => 'config',
