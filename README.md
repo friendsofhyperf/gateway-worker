@@ -8,13 +8,13 @@
 ## Installation
 
 ~~~bash
-composer require friendsofhyperf/laravel-gateway-worker
+composer require friendsofhyperf/gateway-worker
 ~~~
 
 publish
 
 ~~~bash
-php bin/hyperf.php vendor:publish friendsofhyperf/laravel-gateway-worker
+php bin/hyperf.php vendor:publish friendsofhyperf/gateway-worker
 ~~~
 
 ## Usage
@@ -44,4 +44,3 @@ In One
 ~~~bash
 php bin/hyperf.php --register --gateway --businessworker
 ~~~
-# gateway-worker
