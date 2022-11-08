@@ -15,6 +15,7 @@ use GatewayWorker\BusinessWorker;
 use GatewayWorker\Gateway;
 use GatewayWorker\Register;
 use Hyperf\Command\Command;
+use LogicException;
 use Workerman\Worker;
 
 class ServeCommand extends Command
@@ -108,11 +109,11 @@ class ServeCommand extends Command
 
             if ($eventHandler) {
                 if (! class_exists($eventHandler)) {
-                    throw new \LogicException("Event '{$eventHandler}' is not exists", 1);
+                    throw new LogicException("Event '{$eventHandler}' is not exists", 1);
                 }
 
                 if (! in_array(GatewayWorkerEventInterface::class, (array) class_implements($eventHandler))) {
-                    throw new \LogicException("{$eventHandler} must implements of " . GatewayWorkerEventInterface::class, 1);
+                    throw new LogicException("{$eventHandler} must implements of " . GatewayWorkerEventInterface::class, 1);
                 }
 
                 $worker->eventHandler = $eventHandler;
