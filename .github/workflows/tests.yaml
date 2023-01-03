@@ -7,7 +7,7 @@ on:
     swow_ref:
       description: 'Using Swow git ref'
       required: false
-      default: 'develop'
+      default: 'v1.0.0'
   schedule:
     - cron: '0 3 * * *'
 
@@ -17,7 +17,7 @@ jobs:
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
-        os: [ubuntu-latest, 'macos-latest']
+        os: ["ubuntu-latest", "macos-latest"]
         php-version: ['8.0', '8.1']
       max-parallel: 4
     steps:

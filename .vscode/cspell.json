@@ -4,6 +4,7 @@
         "gatewayworker",
         "laravel",
         "stringable",
+        "Swow",
         "Workerman"
     ]
 }

@@ -19,7 +19,7 @@
         "hyperf/command": "~3.0.0",
         "workerman/gateway-worker": "^3.0.8|^4.0",
         "workerman/gatewayclient": "^3.0.13",
-        "hyperf/engine-swow": "^2.1",
+        "hyperf/engine-swow": "^2.1.1",
         "hyperf/event": "~3.0.0",
         "hyperf/framework": "~3.0.0"
     },
