@@ -15,7 +15,7 @@ jobs:
         os: ["ubuntu-latest", "macos-latest"]
         php-version: ['8.0', '8.1', '8.2']
         swow-version: ['v1.0.0', 'develop']
-      max-parallel: 4
+      max-parallel: 16
     steps:
       - name: Checkout Self
         uses: actions/checkout@v2
