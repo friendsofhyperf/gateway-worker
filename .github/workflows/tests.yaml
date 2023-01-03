@@ -3,11 +3,6 @@ name: tests
 on:
   push:
   pull_request:
-  # workflow_dispatch:
-  #   swow_ref:
-  #     description: 'Using Swow git ref'
-  #     required: false
-  #     default: 'v1.0.0'
   schedule:
     - cron: '0 3 * * *'
 
