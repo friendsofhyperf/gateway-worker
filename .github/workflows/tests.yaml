@@ -3,23 +3,19 @@ name: tests
 on:
   push:
   pull_request:
-  workflow_dispatch:
-    swow_ref:
-      description: 'Using Swow git ref'
-      required: false
-      default: 'v1.0.0'
   schedule:
     - cron: '0 3 * * *'
 
 jobs:
   ci:
-    name: Test for PHP ${{ matrix.php-version }} on ${{ matrix.os }}
+    name: Test for PHP ${{ matrix.php-version }} with Swow ${{ matrix.swow-version }} on ${{ matrix.os }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
         php-version: ['8.0', '8.1', '8.2']
-      max-parallel: 4
+        swow-version: ['v1.0.0', 'develop']
+      max-parallel: 16
     steps:
       - name: Checkout Self
         uses: actions/checkout@v2
@@ -34,7 +30,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: swow/swow
-          ref: ${{ (github.event.inputs && github.event.inputs.swow_ref) || 'develop' }}
+          ref: ${{ matrix.swow-version }}
           path: swow
       - name: Build Swow
         run: |
