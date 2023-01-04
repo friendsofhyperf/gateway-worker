@@ -26,7 +26,7 @@ class ConfigProvider
             'publish' => [
                 [
                     'id' => 'config',
-                    'description' => 'The config for gateway-worker.',
+                    'description' => 'The config file for gateway-worker.',
                     'source' => __DIR__ . '/../publish/gatewayworker.php',
                     'destination' => BASE_PATH . '/config/autoload/gatewayworker.php',
                 ],

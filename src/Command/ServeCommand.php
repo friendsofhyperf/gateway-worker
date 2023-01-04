@@ -16,6 +16,7 @@ use GatewayWorker\Gateway;
 use GatewayWorker\Register;
 use Hyperf\Command\Command;
 use LogicException;
+use Workerman\Events\EventInterface;
 use Workerman\Worker;
 
 class ServeCommand extends Command
@@ -128,13 +129,11 @@ class ServeCommand extends Command
         Worker::$pidFile = config('gatewayworker.pid_file', BASE_PATH . '/runtime/workerman.pid');
         Worker::$logFile = config('gatewayworker.log_file', BASE_PATH . '/runtime/logs/workerman.log');
 
-        Worker::$eventLoopClass = with(config('gatewayworker.event_loop_class'), function ($eventLoopClass) {
-            if (! $eventLoopClass instanceof \Workerman\Events\EventInterface) {
-                $eventLoopClass = \Workerman\Events\Swow::class;
-            }
+        $eventLoopClass = config('gatewayworker.event_loop_class');
 
-            return $eventLoopClass;
-        });
+        if (class_exists($eventLoopClass) && in_array(EventInterface::class, (array) class_implements($eventLoopClass))) {
+            Worker::$eventLoopClass = $eventLoopClass;
+        }
 
         Worker::runAll();
     }

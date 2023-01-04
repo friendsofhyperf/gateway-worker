@@ -12,12 +12,13 @@ namespace FriendsOfHyperf\GatewayWorker\Listener;
 
 use FriendsOfHyperf\GatewayWorker\Client;
 use Hyperf\Contract\ConfigInterface;
+use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Event\Contract\ListenerInterface;
 use Hyperf\Framework\Event\BootApplication;
 
 class BindRegistryAddressListener implements ListenerInterface
 {
-    public function __construct(protected ConfigInterface $config)
+    public function __construct(protected ConfigInterface $config, protected StdoutLoggerInterface $logger)
     {
     }
 
@@ -32,6 +33,8 @@ class BindRegistryAddressListener implements ListenerInterface
     {
         if ($registryAddress = $this->config->get('gatewayworker.register_address', '')) {
             Client::$registerAddress = $registryAddress;
+
+            $this->logger->debug(sprintf('[gateway-worker] Bind registry address %s', $registryAddress));
         }
     }
 }
