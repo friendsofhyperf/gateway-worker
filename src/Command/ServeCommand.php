@@ -128,6 +128,14 @@ class ServeCommand extends Command
         Worker::$pidFile = config('gatewayworker.pid_file', BASE_PATH . '/runtime/workerman.pid');
         Worker::$logFile = config('gatewayworker.log_file', BASE_PATH . '/runtime/logs/workerman.log');
 
+        Worker::$eventLoopClass = with(config('gatewayworker.event_loop_class'), function ($eventLoopClass) {
+            if (! $eventLoopClass instanceof \Workerman\Events\EventInterface) {
+                $eventLoopClass = \Workerman\Events\Swow::class;
+            }
+
+            return $eventLoopClass;
+        });
+
         Worker::runAll();
     }
 }

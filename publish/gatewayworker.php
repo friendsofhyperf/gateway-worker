@@ -29,6 +29,9 @@ return [
         'processes' => env('GATEWAYWORKER_BUSINESSWORKER_PROCESSES', 1),
         'event_handler' => '', // implements FriendsOfHyperf\GatewayWorker\GatewayWorkerEventInterface
     ],
+
+    'event_loop_class' => \Workerman\Events\Swow::class,
+
     'pid_file' => BASE_PATH . '/runtime/workerman.pid',
     'log_file' => BASE_PATH . '/runtime/logs/workerman.log',
 ];
