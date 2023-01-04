@@ -5,6 +5,8 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/friendsofhyperf/gateway-worker.svg?style=flat-square)](https://packagist.org/packages/friendsofhyperf/gateway-worker)
 [![GitHub license](https://img.shields.io/github/license/friendsofhyperf/gateway-worker)](https://github.com/friendsofhyperf/gateway-worker)
 
+The gateway-worker component for Hyperf.
+
 ## Installation
 
 ~~~bash
@@ -31,7 +33,7 @@ php bin/hyperf.php gateway-worker:serve --help
 
 ## Cluster
 
-Cluster
+- Cluster
 
 |Role|IP|Command|
 |--|--|--|
@@ -39,7 +41,7 @@ Cluster
 |Gateway|192.168.2.102-105|`php bin/hyperf.php gateway-worker:serve --gateway --gateway-bind=0.0.0.0:1216 --register-address=192.168.1.101:1215 --lan-ip=192.168.1.xxx`|
 |Businessworker|192.168.1.106-110|`php bin/hyperf.php gateway-worker:serve --businessworker --register-address=192.168.1.101:1215`|
 
-In One
+- In One
 
 ~~~bash
 php bin/hyperf.php --register --gateway --businessworker
