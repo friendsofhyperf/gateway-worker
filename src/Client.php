@@ -11,7 +11,9 @@ declare(strict_types=1);
 namespace FriendsOfHyperf\GatewayWorker;
 
 use GatewayClient\Gateway;
+use Hyperf\Macroable\Macroable;
 
 class Client extends Gateway
 {
+    use Macroable;
 }

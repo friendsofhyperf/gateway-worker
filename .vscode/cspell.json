@@ -3,6 +3,7 @@
         "businessworker",
         "gatewayworker",
         "laravel",
+        "Macroable",
         "stringable",
         "Swow",
         "Workerman"
