@@ -58,6 +58,13 @@ jobs:
           php --ri swow
       - name: Setup Packages
         run: composer update -o
+      - name: Run Cs Fixer
+        run: |
+          if [ "${{ matrix.php-version }}" = "8.2" ]; then
+            PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix src --dry-run
+          else
+            vendor/bin/php-cs-fixer fix src --dry-run
+          fi
       - name: Run Analyse
         run: |
           composer analyse src
