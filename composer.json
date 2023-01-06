@@ -15,13 +15,14 @@
     }],
     "require": {
         "php": ">=8.0",
-        "hyperf/config": "~3.0.0",
         "hyperf/command": "~3.0.0",
-        "workerman/gateway-worker": "^3.0.8|^4.0",
-        "workerman/gatewayclient": "^3.0.13",
+        "hyperf/config": "~3.0.0",
         "hyperf/engine-swow": "^2.1.1",
         "hyperf/event": "~3.0.0",
-        "hyperf/framework": "~3.0.0"
+        "hyperf/framework": "~3.0.0",
+        "hyperf/macroable": "~3.0.0",
+        "workerman/gateway-worker": "^3.0.8|^4.0",
+        "workerman/gatewayclient": "^3.0.13"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.0",
@@ -43,6 +44,9 @@
         "hyperf": {
             "config": "FriendsOfHyperf\\GatewayWorker\\ConfigProvider"
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev",
     "scripts": {
