@@ -8,13 +8,13 @@ on:
 
 jobs:
   ci:
-    name: Test for PHP ${{ matrix.php-version }} with Swow ${{ matrix.swow-version }} on ${{ matrix.os }}
+    name: Test for PHP ${{ matrix.php }} with Swow ${{ matrix.swow }} on ${{ matrix.os }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
-        php-version: ['8.0', '8.1', '8.2']
-        swow-version: ['v1.1.0', 'v1.0.0', 'develop']
+        php: ['8.0', '8.1', '8.2']
+        swow: ['1.1.0', '1.0.0', 'develop']
       max-parallel: 16
     steps:
       - name: Checkout Self
@@ -22,45 +22,27 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-version }}
+          php-version: ${{ matrix.php }}
           extensions: redis, pdo, pdo_mysql, bcmath, curl, openssl
           tools: phpize
           coverage: none
-      - name: Checkout Swow
-        uses: actions/checkout@v2
-        with:
-          repository: swow/swow
-          ref: ${{ matrix.swow-version }}
-          path: swow
+      - name: Setup Packages
+        run: |
+          composer update -o
       - name: Build Swow
         run: |
-          if [ ${{ runner.os }} = 'Linux' ]
-          then
-            printf "::group::\033[1mInstall dependencies\033[0m\n"
-            sudo apt-get update
-            sudo apt-get install -yqq libcurl4-openssl-dev
+          if [ "${{ matrix.swow }}" = "develop" ]; then
+            composer require swow/swow:"dev-${{ matrix.swow }} as 1.1.0"
+          else
+            composer require swow/swow:~${{ matrix.swow }}
           fi
-          cd swow/ext
-          printf "::group::\033[1mRun phpize\033[0m\n"
-          phpize
-          printf "::group::\033[1mStart configure\033[0m\n"
-          ./configure \
-            --enable-swow-debug \
-            --enable-swow-ssl=${{ runner.os == 'Linux' && 'yes' || '/usr/local/opt/openssl' }} \
-            --enable-swow-curl=${{ runner.os == 'Linux' && 'yes' || '/usr/local/opt/curl' }}
-          printf "::group::\033[1mStart build Swow\033[0m\n"
-          make -j "$(${{ runner.os == 'Linux' && 'nproc' || 'sysctl -n hw.logicalcpu' }})"
-          printf "::group::\033[1mInstall Swow\033[0m\n"
-          ${{ runner.os == 'Linux' && 'sudo' || ''}} make install-modules
-          printf "::group::\033[1mEnable Swow\033[0m\n"
+          sudo ./vendor/bin/swow-builder --install
           inipath=`php --ini | sed -n 's/^Scan for additional .ini files in: //p'`
           sudo sh -c "echo extension=swow > ${inipath}/swow.ini"
           php --ri swow
-      - name: Setup Packages
-        run: composer update -o
       - name: Run Cs Fixer
         run: |
-          if [ "${{ matrix.php-version }}" = "8.2" ]; then
+          if [ "${{ matrix.php }}" = "8.2" ]; then
             PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix src --dry-run
           else
             php vendor/bin/php-cs-fixer fix src --dry-run
