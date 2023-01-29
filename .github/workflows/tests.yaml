@@ -8,7 +8,7 @@ on:
 
 jobs:
   ci:
-    name: Test for PHP ${{ matrix.php-version }} with Swow ${{ matrix.swow-version }} on ${{ matrix.os }}
+    name: Test for PHP ${{ matrix.php-version }} with Swow v${{ matrix.swow-version }} on ${{ matrix.os }}
     runs-on: "${{ matrix.os }}"
     strategy:
       matrix:
@@ -62,7 +62,7 @@ jobs:
       - name: Build Swow
         run: |
           composer require swow/swow ~${{ matrix.swow-version }}
-          ./vendor/bin/swow-builder --install
+          sudo ./vendor/bin/swow-builder --install
           inipath=`php --ini | sed -n 's/^Scan for additional .ini files in: //p'`
           sudo sh -c "echo extension=swow > ${inipath}/swow.ini"
           php --ri swow
