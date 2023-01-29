@@ -31,6 +31,7 @@ jobs:
           composer update -o
       - name: Build Swow
         run: |
+          composer remove swow/swow
           if [ "${{ matrix.swow }}" = "develop" ]; then
             composer require swow/swow:dev-${{ matrix.swow }}
           else
