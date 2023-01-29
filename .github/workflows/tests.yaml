@@ -26,12 +26,12 @@ jobs:
           extensions: redis, pdo, pdo_mysql, bcmath, curl, openssl
           tools: phpize
           coverage: none
-      - name: Checkout Swow
-        uses: actions/checkout@v2
-        with:
-          repository: swow/swow
-          ref: ${{ matrix.swow-version }}
-          path: swow
+      # - name: Checkout Swow
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: swow/swow
+      #     ref: ${{ matrix.swow-version }}
+      #     path: swow
       # - name: Build Swow
       #   run: |
       #     if [ ${{ runner.os }} = 'Linux' ]
