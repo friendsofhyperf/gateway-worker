@@ -32,7 +32,7 @@ jobs:
       - name: Build Swow
         run: |
           if [ "${{ matrix.swow }}" = "develop" ]; then
-            composer require swow/swow:${{ matrix.swow }}
+            composer require swow/swow:dev-${{ matrix.swow }}
           else
             composer require swow/swow:~${{ matrix.swow }}
           fi
