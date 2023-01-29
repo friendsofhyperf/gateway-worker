@@ -32,9 +32,9 @@ jobs:
       - name: Build Swow
         run: |
           if [ "${{ matrix.swow }}" = "develop" ]; then
-            composer require swow/swow ${{ matrix.swow }}
+            composer require swow/swow:${{ matrix.swow }}
           else
-            composer require swow/swow ~${{ matrix.swow }}
+            composer require swow/swow:~${{ matrix.swow }}
           fi
           sudo ./vendor/bin/swow-builder --install
           inipath=`php --ini | sed -n 's/^Scan for additional .ini files in: //p'`
