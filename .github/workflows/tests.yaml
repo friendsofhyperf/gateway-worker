@@ -14,7 +14,7 @@ jobs:
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
         php: ['8.0', '8.1', '8.2']
-        swow: ['1.1.0', '1.0.0', 'develop']
+        swow: ['1.1.*', '1.0.*', 'develop']
       max-parallel: 16
     steps:
       - name: Checkout Self
@@ -31,12 +31,12 @@ jobs:
           composer update -o
       - name: Build Swow
         run: |
-          composer require swow/swow:~${{ matrix.swow }}
+          composer require swow/swow:${{ matrix.swow }}
           sudo ./vendor/bin/swow-builder --install
         if: matrix.swow != 'develop'
       - name: Build Swow (develop)
         run: |
-          composer require swow/swow:"dev-${{ matrix.swow }} as 1.1.0"
+          composer require swow/swow:"dev-${{ matrix.swow }} as 1.2.0"
           sudo ./vendor/bin/swow-builder --install
         if: matrix.swow == 'develop'
       - name: Set PHP Extension
