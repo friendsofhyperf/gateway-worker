@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: '0 3 * * *'
 
+env:
+  PHP_CS_FIXER_IGNORE_ENV: 1
+
 jobs:
   ci:
     name: Test for PHP ${{ matrix.php }} with Swow ${{ matrix.swow }} on ${{ matrix.os }}
@@ -45,11 +48,11 @@ jobs:
           sudo sh -c "echo extension=swow > ${inipath}/swow.ini"
           php --ri swow
       - name: Run Cs Fixer
-        run: vendor/bin/php-cs-fixer fix src --dry-run
-        if: matrix.php != '8.2'
-      - name: Run Cs Fixer (IGNORE_ENV)
-        run: PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix src --dry-run
-        if: matrix.php == '8.2'
+        run: php vendor/bin/php-cs-fixer fix src --dry-run
+      #   if: matrix.php != '8.2'
+      # - name: Run Cs Fixer (IGNORE_ENV)
+      #   run: PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix src --dry-run
+      #   if: matrix.php == '8.2'
       - name: Run Analyse
         run: |
           composer analyse src
