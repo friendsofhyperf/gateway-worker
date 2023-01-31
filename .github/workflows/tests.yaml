@@ -8,6 +8,8 @@ on:
 
 env:
   PHP_CS_FIXER_IGNORE_ENV: 1
+  SKIP_SWOW_REQUIRED_EXTENSION_CHECK: 1
+  SWOW_ALIAS_VERSION: 1.2.0
 
 jobs:
   ci:
@@ -32,27 +34,23 @@ jobs:
       - name: Setup Packages
         run: |
           composer update -o
-      - name: Build Swow
+      - name: Checkout Swow
         run: |
           composer require swow/swow:${{ matrix.swow }}
-          sudo ./vendor/bin/swow-builder --install
         if: matrix.swow != 'develop'
-      - name: Build Swow (develop)
+      - name: Checkout Swow (develop)
         run: |
-          composer require swow/swow:"dev-${{ matrix.swow }} as 1.2.0"
+          composer require swow/swow:"dev-develop as ${{env.SWOW_ALIAS_VERSION}}"
           sudo ./vendor/bin/swow-builder --install
         if: matrix.swow == 'develop'
-      - name: Set PHP Extension
+      - name: Build Swow
         run: |
+          sudo ./vendor/bin/swow-builder --install
           inipath=`php --ini | sed -n 's/^Scan for additional .ini files in: //p'`
           sudo sh -c "echo extension=swow > ${inipath}/swow.ini"
           php --ri swow
       - name: Run Cs Fixer
         run: php vendor/bin/php-cs-fixer fix src --dry-run
-      #   if: matrix.php != '8.2'
-      # - name: Run Cs Fixer (IGNORE_ENV)
-      #   run: PHP_CS_FIXER_IGNORE_ENV=true php vendor/bin/php-cs-fixer fix src --dry-run
-      #   if: matrix.php == '8.2'
       - name: Run Analyse
         run: |
           composer analyse src
