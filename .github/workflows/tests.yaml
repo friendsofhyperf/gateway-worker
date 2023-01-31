@@ -34,11 +34,11 @@ jobs:
       - name: Setup Packages
         run: |
           composer update -o
-      - name: Checkout Swow
+      - name: Setup Swow
         run: |
           composer require swow/swow:${{ matrix.swow }}
         if: matrix.swow != 'develop'
-      - name: Checkout Swow (develop)
+      - name: Setup Swow (develop)
         run: |
           composer require swow/swow:"dev-develop as ${{env.SWOW_ALIAS_VERSION}}"
           sudo ./vendor/bin/swow-builder --install
