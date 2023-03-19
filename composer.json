@@ -21,7 +21,7 @@
         "hyperf/event": "~3.0.0",
         "hyperf/framework": "~3.0.0",
         "hyperf/macroable": "~3.0.0",
-        "workerman/gateway-worker": "^3.0.8|^4.0",
+        "workerman/gateway-worker": "^3.0.27|^4.0",
         "workerman/gatewayclient": "^3.0.13"
     },
     "require-dev": {
