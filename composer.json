@@ -49,6 +49,7 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
         "cs-fix": "php-cs-fixer fix $1",
