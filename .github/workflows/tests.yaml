@@ -38,7 +38,7 @@ jobs:
       - name: Setup Packages
         run: |
           composer update -o
-          composer require workerman/workerman:^${{ matrix.workerman }}
+          # composer require workerman/workerman:^${{ matrix.workerman }}
       - name: Setup Swow
         run: |
           composer require swow/swow:${{ matrix.swow }}
