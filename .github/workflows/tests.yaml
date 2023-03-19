@@ -19,7 +19,7 @@ jobs:
       matrix:
         os: ["ubuntu-latest", "macos-latest"]
         php: ['8.0', '8.1', '8.2']
-        swow: ['1.2.0', '1.1.0', '1.0.0']
+        swow: ['1.2.*', '1.1.*', '1.0.*']
         workerman: ['4.0']
         exclude:
           - php: 8.0
@@ -41,7 +41,7 @@ jobs:
           composer require workerman/workerman:^${{ matrix.workerman }}
       - name: Setup Swow
         run: |
-          composer require swow/swow:~${{ matrix.swow }}
+          composer require swow/swow:${{ matrix.swow }}
         if: matrix.swow != 'develop'
       - name: Setup Swow (develop)
         run: |
