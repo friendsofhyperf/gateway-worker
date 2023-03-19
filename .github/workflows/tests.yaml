@@ -38,7 +38,14 @@ jobs:
       - name: Setup Packages
         run: |
           composer update -o
+      - name: Setup Workerman
+        run: |
           composer require workerman/workerman:^${{ matrix.workerman }}
+          if: matrix.workerman != '5.0'
+      - name: Setup Workerman (5.0)
+        run: |
+          composer require workerman/workerman:^${{ matrix.workerman }} -W
+          if: matrix.workerman == '5.0'
       - name: Setup Swow
         run: |
           composer require swow/swow:${{ matrix.swow }}
