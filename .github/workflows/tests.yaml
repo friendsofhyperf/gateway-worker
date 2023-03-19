@@ -20,7 +20,7 @@ jobs:
         os: ["ubuntu-latest", "macos-latest"]
         php: ['8.0', '8.1', '8.2']
         swow: ['1.2.*', '1.1.*', '1.0.*', 'develop']
-        # workerman: ['4.0', '5.0']
+        workerman: ['4.0']
         exclude:
           - php: 8.0
             workerman: 5.0
@@ -38,7 +38,7 @@ jobs:
       - name: Setup Packages
         run: |
           composer update -o
-          # composer require workerman/workerman:^${{ matrix.workerman }}
+          composer require workerman/workerman:^${{ matrix.workerman }}
       - name: Setup Swow
         run: |
           composer require swow/swow:${{ matrix.swow }}
