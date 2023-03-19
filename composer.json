@@ -21,7 +21,7 @@
         "hyperf/event": "~3.0.0",
         "hyperf/framework": "~3.0.0",
         "hyperf/macroable": "~3.0.0",
-        "workerman/gateway-worker": "^3.0.8|^4.0",
+        "workerman/gateway-worker": "^3.0.27|^4.0",
         "workerman/gatewayclient": "^3.0.13"
     },
     "require-dev": {
@@ -49,6 +49,7 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "scripts": {
         "analyse": "phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
         "cs-fix": "php-cs-fixer fix $1",
