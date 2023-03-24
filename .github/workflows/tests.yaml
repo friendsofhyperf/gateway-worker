@@ -20,11 +20,11 @@ jobs:
         os: ["ubuntu-latest", "macos-latest"]
         php: ['8.0', '8.1', '8.2']
         swow: ['1.2.*', '1.1.*', '1.0.*']
-        workerman: ['4.0', '5.0']
+        workerman: ['4.0']
         exclude:
           - php: 8.0
             workerman: 5.0
-      max-parallel: 16
+      max-parallel: 20
     steps:
       - name: Checkout Self
         uses: actions/checkout@v2
