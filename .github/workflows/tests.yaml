@@ -24,7 +24,7 @@ jobs:
         exclude:
           - php: 8.0
             workerman: 5.0
-      max-parallel: 16
+      max-parallel: 20
     steps:
       - name: Checkout Self
         uses: actions/checkout@v2
