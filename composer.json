@@ -45,7 +45,7 @@
             "config": "FriendsOfHyperf\\GatewayWorker\\ConfigProvider"
         },
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-main": "2.x-dev"
         }
     },
     "config": {
