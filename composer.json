@@ -14,14 +14,14 @@
         "email": "huangdijia@gmail.com"
     }],
     "require": {
-        "php": ">=8.0",
+        "php": ">=8.1",
         "hyperf/command": "~3.0.0",
         "hyperf/config": "~3.0.0",
         "hyperf/engine-swow": "^2.3",
         "hyperf/event": "~3.0.0",
         "hyperf/framework": "~3.0.0",
         "hyperf/macroable": "~3.0.0",
-        "workerman/gateway-worker": "^3.0.28",
+        "workerman/gateway-worker": "dev-master as 4.0.0",
         "workerman/gatewayclient": "^3.0.13"
     },
     "require-dev": {
@@ -43,6 +43,9 @@
     "extra": {
         "hyperf": {
             "config": "FriendsOfHyperf\\GatewayWorker\\ConfigProvider"
+        },
+        "branch-alias": {
+            "dev-master": "2.x-dev"
         }
     },
     "config": {
