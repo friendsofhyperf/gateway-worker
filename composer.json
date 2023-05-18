@@ -57,7 +57,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
-        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 300M -l 0 -c phpstan.neon ./src",
+        "analyse": "@php vendor/bin/phpstan analyse --memory-limit 500M -l 0 -c phpstan.neon ./src",
         "cs-fix": "@php vendor/bin/php-cs-fixer fix $1",
         "test": "@php vendor/bin/pest"
     }
